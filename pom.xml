@@ -10,17 +10,28 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-     <javafx.version>11</javafx.version>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+     <javafx.version>17.0.2</javafx.version>
   </properties>
 
   <dependencies>
     <dependency>
+  <groupId>org.openjfx</groupId>
+  <artifactId>javafx</artifactId>
+  <version>17.0.2</version>
+  <type>pom</type>
+</dependency>
+    <!--dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>11</version>
+      <version>17.2</version>
     </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-media</artifactId>
+      <version>17.2</version>
+    </dependency-->
      <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
@@ -32,7 +43,7 @@
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
-        <version>0.0.3</version>
+        <version>0.0.8</version>
         <configuration>
 	   <release>${maven.compiler.release}</release>
            <mainClass>fi.iki.pj.aapinen.HelloFX</mainClass>
@@ -40,6 +51,30 @@
             <launcher>launcher</launcher>
         </configuration>
       </plugin>
+      <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+      </plugin>
+      <plugin>
+      <!-- Build an executable JAR -->
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+      <version>3.3.0</version>
+      <configuration>
+        <archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>fi.iki.pj.aapinen.HelloFX</mainClass>
+          </manifest>
+        </archive>
+      </configuration>
+    </plugin>
     </plugins>
   </build>
 </project>
